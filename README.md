@@ -24,8 +24,6 @@ O foco é **Brasília (BSB)**.
 9. [Viabilidade do MVP](#9-viabilidade-do-mvp)
 10. [Ética, licença e proteção de dados](#10-ética-licença-e-proteção-de-dados)
 11. [Autoavaliação](#11-autoavaliação)
-12. [Como reproduzir](#12-como-reproduzir)
-13. [Estrutura do repositório](#13-estrutura-do-repositório)
 
 ---
 
@@ -560,31 +558,3 @@ As cinco perguntas foram respondidas com os dados de 2025 completos, e a hipóte
 - Um **modelo preditivo** da probabilidade de atraso > 30 min por voo, usando as variáveis já modeladas.
 
 ---
-
-## 12. Como reproduzir
-
-1. Crie uma conta gratuita no **[Databricks Free Edition](https://www.databricks.com/learn/free-edition)**.
-2. Importe a pasta `notebooks/` no Workspace (*Workspace → Import*) ou conecte este repositório via *Git folder*.
-3. Execute `00_config`. Ele cria o schema `workspace.mvp_voos` e o Volume `raw`.
-4. Baixe os 12 arquivos mensais `VRA_2025M.csv` no portal de dados abertos da ANAC (*Voos e operações aéreas → Voo
-   Regular Ativo (VRA) → 2025 → pasta de cada mês*; ver também a página
-   [Histórico de voos](https://www.gov.br/anac/pt-br/assuntos/dados-e-estatisticas/historico-de-voos)) e envie-os para
-   o Volume: *Catalog → workspace → mvp_voos → raw → Upload to this volume*.
-5. Execute, em ordem: `01_coleta_bronze` → `02_transformacao_silver` → `03_modelagem_gold` → `04_qualidade_dados` →
-   `05_analise`.
-
-> Os notebooks também rodam fora do Databricks, com PySpark local, para testes. Basta definir `MVP_MODO_LOCAL=1` e
-> `MVP_CAMINHO_RAW=<pasta com os CSVs>` (ver `scripts/rodar_local.py`).
-
----
-
-## 13. Estrutura do repositório
-
-| Caminho | Conteúdo |
-|---|---|
-| `README.md` | Este documento: objetivo, perguntas, metodologia, resultados e autoavaliação |
-| `notebooks/` | Notebooks Databricks (formato *source* `.py`) das etapas 00 a 05 |
-| `scripts/` | Execução local dos notebooks para teste |
-| `catalogo/` | Catálogo de Dados e diagrama do modelo estrela |
-| `evidencias/` | Prints que comprovam a execução na nuvem e os resultados |
-| `LICENSE` | Licença do código (MIT) e registro da licença dos dados |
